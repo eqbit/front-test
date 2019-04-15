@@ -1,6 +1,6 @@
 import React from 'react';
 import format from '../../lib/format';
-import getMonthName from '../../lib/month_name';
+import {getMonthName} from '../../lib/month_name';
 import './style.css';
 
 class AddEventForm extends React.Component {

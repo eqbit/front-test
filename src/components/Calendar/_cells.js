@@ -2,12 +2,13 @@ import React from 'react';
 import dateFns from "date-fns";
 import format from '../../lib/format';
 import Cell from './_cell';
+import QuickAddEventForm from '../QuickAddEventForm/QuickAddEventForm'
 
 const initEvents = JSON.parse(localStorage.getItem("events"));
 
 class Cells extends React.Component {
     state = {
-        events: initEvents
+        events: initEvents,
     };
 
     getEventKey = day => `ev_${format(day, "D")}_${format(day, "M")}_${format(day, "YYYY")}`;
@@ -25,10 +26,13 @@ class Cells extends React.Component {
     addEvent = (day, event) => {
         const {events} = this.state;
         
+        console.log(this.getDate(day));
+        
         if(!event || !event.title) {
             console.log("no data");
             return;
         }
+        
         
         const newEvent = {
             title: event.title,
@@ -105,7 +109,11 @@ class Cells extends React.Component {
             days = [];
             dateFormat = "D";
         }
-        return <div className="container calendar-body">{rows}</div>;
+        return <>
+                {this.props.showQuickAddForm && <QuickAddEventForm handleQuickFormClose={() => this.props.handleQuickAdd(false)} submitHandler={this.submitHandler}/>}
+    
+                <div className="container calendar-body">{rows}</div>;
+               </>
     }
 }
 

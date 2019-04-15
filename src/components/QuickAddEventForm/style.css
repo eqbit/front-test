@@ -1,0 +1,18 @@
+.quick-event-add {
+    position: absolute;
+    width: 300px;
+    background: #FFF;
+    padding: 30px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    top: 107px;
+    left: calc(50% - 600px);
+}
+
+.event-form__close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    line-height: 15px;
+}

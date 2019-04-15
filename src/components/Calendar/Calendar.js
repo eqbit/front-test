@@ -11,7 +11,8 @@ class Calendar extends React.Component {
     state = {
         currentTime: new Date(),
         selectedDate: new Date(),
-        activeCellKey: null
+        activeCellKey: null,
+        showQuickAddForm: false
     };
 
     getDayKey = day => `day_${format(day, "D")}_${format(day, "M")}_${format(day, "YYYY")}`;
@@ -44,11 +45,13 @@ class Calendar extends React.Component {
     };
     
     handleFormClose = () => this.setState({activeCellKey: null});
+    
+    handleQuickAdd = isShow => this.setState({showQuickAddForm: isShow})
 
     render() {
         return (
             <div className="calendar">
-                <Header />
+                <Header handleQuickAdd={this.handleQuickAdd}/>
                 <Nav
                     prevMonth={this.prevMonth}
                     nextMonth={this.nextMonth}
@@ -60,6 +63,8 @@ class Calendar extends React.Component {
                     state={this.state}
                     onDateClick={this.onDateClick}
                     handleFormClose={this.handleFormClose}
+                    showQuickAddForm={this.state.showQuickAddForm}
+                    handleQuickAdd={this.handleQuickAdd}
                 />
             </div>
         );

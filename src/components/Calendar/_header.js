@@ -1,13 +1,13 @@
 import React from "react";
 
-const Header = () => {
+const Header = props => {
 
     return (
         <div className="header">
             <div className="container">
                 <div className="header-row">
                     <div className="header-buttons">
-                        <button className="btn-blue">Добавить</button>
+                        <button className="btn-blue" onClick={() => props.handleQuickAdd(true)}>Добавить</button>
                         <button className="btn-blue">Обновить</button>
                     </div>
                     <div className="header-search">
