@@ -1,0 +1,55 @@
+.event-form {
+    position: absolute;
+    width: 300px;
+    display: grid;
+    grid-gap: 10px;
+    background: #FFF;
+    padding: 40px;
+    top: -30px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    z-index: 1;
+}
+
+.event-form:after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 20px;
+    height: 20px;
+    background: #FFF;
+    top: 60px;
+    box-shadow: 3px -3px 3px rgba(0,0,0,0.1);
+}
+
+.event-form--right {
+    left: 110%;
+}
+
+
+.event-form--left {
+    right: 110%;
+}
+
+.event-form--left:after {
+    transform: rotate(45deg);
+    left: calc(100% - 10px);
+}
+
+.event-form_input {
+    padding: 5px;
+}
+
+.event-form--right:after {
+    transform: rotate(-135deg);
+    right: calc(100% - 10px);
+}
+
+.event-form_input::placeholder {
+    color: #DADADA;
+    font-size: 14px;
+}
+
+.event-form_textarea {
+    resize: none;
+    height: 80px;
+}
