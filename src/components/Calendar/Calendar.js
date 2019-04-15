@@ -38,9 +38,12 @@ class Calendar extends React.Component {
     toToday = () => {
         this.setState({
             currentTime: new Date(),
-            selectedDate: new Date()
+            selectedDate: new Date(),
+            activeCellKey: null
         })
     };
+    
+    handleFormClose = () => this.setState({activeCellKey: null});
 
     render() {
         return (
@@ -56,6 +59,7 @@ class Calendar extends React.Component {
                 <Cells
                     state={this.state}
                     onDateClick={this.onDateClick}
+                    handleFormClose={this.handleFormClose}
                 />
             </div>
         );
