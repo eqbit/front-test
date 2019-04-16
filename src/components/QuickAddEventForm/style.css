@@ -6,6 +6,7 @@
     box-shadow: 0 0 5px rgba(0,0,0,0.3);
     top: 107px;
     left: calc(50% - 600px);
+    z-index: 1;
 }
 
 .event-form__close {

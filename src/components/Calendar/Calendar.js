@@ -7,20 +7,32 @@ import Nav from './_nav';
 import Cells from './_cells';
 import format from "../../lib/format";
 
+const initialState = {
+    currentTime: new Date(),
+    selectedDate: new Date(),
+    activeCellKey: null,
+    showQuickAddForm: false
+};
+
 class Calendar extends React.Component {
-    state = {
-        currentTime: new Date(),
-        selectedDate: new Date(),
-        activeCellKey: null,
-        showQuickAddForm: false
+    constructor(props) {
+        super(props);
+        
+        this.state = initialState;
+    }
+    
+    reset = () => {
+        this.setState(initialState);
     };
 
     getDayKey = day => `day_${format(day, "D")}_${format(day, "M")}_${format(day, "YYYY")}`;
 
     onDateClick = day => {
         this.setState({
+            currentTime: day,
             selectedDate: day,
-            activeCellKey: this.state.activeCellKey === this.getDayKey(day) ? null : this.getDayKey(day)
+            activeCellKey: this.state.activeCellKey === this.getDayKey(day) ? null : this.getDayKey(day),
+            showQuickAddForm: false
         });
     };
 
@@ -37,21 +49,29 @@ class Calendar extends React.Component {
     };
 
     toToday = () => {
-        this.setState({
-            currentTime: new Date(),
-            selectedDate: new Date(),
-            activeCellKey: null
-        })
+        this.reset();
     };
     
-    handleFormClose = () => this.setState({activeCellKey: null});
+    handleFormClose = () => {
+        this.setState({
+            activeCellKey: null
+        });
+    };
     
-    handleQuickAdd = isShow => this.setState({showQuickAddForm: isShow})
+    handleQuickAdd = isShow => {
+        this.setState({
+            showQuickAddForm: isShow,
+            activeCellKey: null
+        });
+    };
 
     render() {
         return (
             <div className="calendar">
-                <Header handleQuickAdd={this.handleQuickAdd}/>
+                <Header
+                    handleQuickAdd={this.handleQuickAdd}
+                    onDateClick={this.onDateClick}
+                />
                 <Nav
                     prevMonth={this.prevMonth}
                     nextMonth={this.nextMonth}

@@ -17,6 +17,8 @@ class QuickAddEventForm extends React.Component {
         this.props.submitHandler(`${dateFns.format(currentDate, "YYYY")}-${getMonthIndex(date[1])}-${date[0]}`, {
             title: fields[1].trim()
         });
+    
+        this.props.handleQuickFormClose();
     };
     
     render() {

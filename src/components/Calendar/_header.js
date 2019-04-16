@@ -1,4 +1,5 @@
 import React from "react";
+import Search from '../Search/Search';
 
 const Header = props => {
 
@@ -10,10 +11,7 @@ const Header = props => {
                         <button className="btn-blue" onClick={() => props.handleQuickAdd(true)}>Добавить</button>
                         <button className="btn-blue">Обновить</button>
                     </div>
-                    <div className="header-search">
-                        <img src="http://pixsector.com/cache/e7836840/av6584c34aabb39f00a10.png" alt=""/>
-                        <input type="text" name='search' className="header-search__input" placeholder='Событие, дата или участник'/>
-                    </div>
+                    <Search onDateClick={props.onDateClick}/>
                 </div>
             </div>
         </div>

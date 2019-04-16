@@ -3,45 +3,34 @@ import dateFns from "date-fns";
 import format from '../../lib/format';
 import Cell from './_cell';
 import QuickAddEventForm from '../QuickAddEventForm/QuickAddEventForm'
+import {getEventKey, getDayKey, getDate, getStoredEvents} from '../../lib/functions';
 
-const initEvents = JSON.parse(localStorage.getItem("events"));
+const storedEvents = getStoredEvents();
+const initEvents = storedEvents ? storedEvents : {};
 
 class Cells extends React.Component {
-    state = {
-        events: initEvents,
-    };
-
-    getEventKey = day => `ev_${format(day, "D")}_${format(day, "M")}_${format(day, "YYYY")}`;
-    
-    getDayKey = day => `day_${format(day, "D")}_${format(day, "M")}_${format(day, "YYYY")}`;
-    
-    getDate = day => {
-        return {
-            day: format(day, "D"),
-            month: format(day, "M"),
-            year: format(day, "YYYY")
+    constructor(props) {
+        super(props);
+        
+        this.state = {
+            events: initEvents
         }
-    };
+    }
     
     addEvent = (day, event) => {
         const {events} = this.state;
-        
-        console.log(this.getDate(day));
         
         if(!event || !event.title) {
             console.log("no data");
             return;
         }
         
-        
-        const newEvent = {
+        events[getEventKey(day)] = {
             title: event.title,
-            date: this.getDate(day),
+            date: getDate(day),
             people: event.people,
             description: event.description
         };
-        
-        events[this.getEventKey(day)] = newEvent;
         
         localStorage.setItem("events", JSON.stringify(events));
         this.setState({events});
@@ -54,7 +43,7 @@ class Cells extends React.Component {
     deleteHandler = (day) => {
         const {events} = this.state;
     
-        delete events[this.getEventKey(day)];
+        delete events[getEventKey(day)];
     
         localStorage.setItem("events", JSON.stringify(events));
         this.setState({events});
@@ -81,7 +70,7 @@ class Cells extends React.Component {
                 formattedDate = format(day, dateFormat);
                 const cloneDay = day;
                 const isSelected = dateFns.isSameDay(day, selectedDate);
-                const hasEvent = !!this.state.events[this.getEventKey(day)];
+                const hasEvent = this.state.events ? !!this.state.events[getEventKey(day)] : false;
 
                 days.push(
                     <Cell
@@ -90,12 +79,12 @@ class Cells extends React.Component {
                         formattedDate={formattedDate}
                         isSelected={isSelected}
                         onClick={() => {
-                            this.props.onDateClick(dateFns.parse(cloneDay));
+                            this.props.onDateClick(cloneDay);
                         }}
                         hasEvent={hasEvent}
-                        event={hasEvent ? this.state.events[this.getEventKey(day)] : null}
+                        event={hasEvent ? this.state.events[getEventKey(day)] : null}
                         dayNumber={i}
-                        active={this.getDayKey(day) === this.props.state.activeCellKey}
+                        active={getDayKey(day) === this.props.state.activeCellKey}
                         submitHandler={this.submitHandler}
                         deleteHandler={this.deleteHandler}
                         handleFormClose={this.props.handleFormClose}
