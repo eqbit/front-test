@@ -1,5 +1,5 @@
 import React from 'react';
-import AddEventForm from '../AddEventForm/AddEventForm';
+import AddEventForm from '../AddEventForm';
 
 class Cell extends React.Component {
     renderTitle = () => this.props.event && this.props.event.title && <div className="calendar-body-row-cell__event-title">{this.props.event.title}</div>;

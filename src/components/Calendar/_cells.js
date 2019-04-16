@@ -2,7 +2,7 @@ import React from 'react';
 import dateFns from "date-fns";
 import format from '../../lib/format';
 import Cell from './_cell';
-import QuickAddEventForm from '../QuickAddEventForm/QuickAddEventForm'
+import QuickAddEventForm from '../QuickAddEventForm'
 import {getEventKey, getDayKey, getDate, getStoredEvents} from '../../lib/functions';
 
 const storedEvents = getStoredEvents();

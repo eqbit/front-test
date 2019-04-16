@@ -35,12 +35,12 @@ class Search extends React.Component {
             if(
                     isInclude(item.title, input)
                 ||
-                    item.description && isInclude(item.description, input)
+                    (item.description && isInclude(item.description, input))
                 ||
-                    item.people && isInclude(item.people, input)
+                    (item.people && isInclude(item.people, input))
                 ||
-                    item.date &&
-                    isInclude(item.date.day, input) || isInclude(item.date.month, input) || isInclude(item.date.year, input)
+                    (item.date &&
+                        (isInclude(item.date.day, input) || isInclude(item.date.month, input) || isInclude(getMonthName(item.date.month), input) || isInclude(item.date.year, input)))
             ) {
                 results.push({
                     title: item.title,
