@@ -54,12 +54,12 @@
     right: calc(100% - 10px);
 }
 
-.event-form_input::placeholder {
+.event-form__input::placeholder {
     color: #DADADA;
     font-size: 14px;
 }
 
-.event-form_textarea {
+.event-form__textarea {
     resize: none;
     height: 80px;
 }

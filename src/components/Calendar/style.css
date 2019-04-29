@@ -4,7 +4,7 @@
     margin: 0 auto;
 }
 
-.btn-blue {
+.btn--blue {
     background: #2389ef;
     color: #FFF;
     border: none;
@@ -75,12 +75,12 @@
     border-left: 1px solid #DADADA;
 }
 
-.calendar-body-row-cell.selected {
+.calendar-body-row-cell--selected {
     background: #4dacff36;
     border: 1px solid #4aa5f7;
 }
 
-.calendar-body-row-cell.with-event {
+.calendar-body-row-cell--with-event {
     background: #4dacff70;
     border: 1px solid #4aa5f7;
 }
